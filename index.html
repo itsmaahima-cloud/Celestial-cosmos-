@@ -1,117 +1,343 @@
-<!DOCTYPE html>
+<!doctype html>
+
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Personal Portfolio</title>
-    <link rel="stylesheet" href="css/style.css">
-</head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Astrologer — Professional Portfolio</title>
+  <meta name="description" content="Professional astrologer portfolio: horoscope readings, consultation booking, testimonials, and spiritual guidance." />
+  <meta name="theme-color" content="#7b2ff7" />  <!-- Google Font (optional) -->  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">  <!-- Fallback favicon (replace with your own) -->  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 fill=%22%237b2ff7%22/></svg>">  <style>
+    /* ---------- Reset & layout ---------- */
+    *,*::before,*::after{box-sizing:border-box}
+    html,body{height:100%;}
+    body{
+      margin:0;
+      font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      color:#0f1724;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.4;
+      /* Full-page gradient background to avoid left white strip */
+      min-height:100vh;
+      width:100vw;
+      background: radial-gradient(1200px 600px at 10% 10%, rgba(255,255,255,0.03), transparent), linear-gradient(135deg, #ff49b0 0%, #7b2ff7 55%, #2b2ba1 100%);
+      background-attachment: fixed;
+      background-repeat:no-repeat;
+      display:flex;
+      flex-direction:column;
+    }
+
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;height:auto;display:block}
+
+    .container{max-width:1200px;margin:0 auto;padding:22px;}
+
+    /* ---------- Header / Navbar ---------- */
+    header{position:sticky;top:0;z-index:50;background:linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));backdrop-filter:blur(6px);border-bottom:1px solid rgba(255,255,255,0.04)}
+    .nav{display:flex;align-items:center;justify-content:space-between;padding:8px 0}
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{width:46px;height:46px;border-radius:10px;background:linear-gradient(90deg,#fff8 0%, #ffffff10 100%);display:flex;align-items:center;justify-content:center;font-weight:700;color:white}
+    nav ul{display:flex;gap:14px;list-style:none;padding:0;margin:0}
+    nav button, nav a{background:transparent;border:none;color:#fff;font-weight:600;padding:8px 10px;border-radius:8px}
+    nav a:hover{background:rgba(255,255,255,0.05)}
+    .cta{background:linear-gradient(90deg,#ffd166,#ff6bcb);padding:8px 14px;border-radius:10px;color:#07122b;font-weight:700}
+
+    /* Mobile hamburger */
+    .hamburger{display:none;border:none;background:transparent;color:white;font-size:22px}
+
+    /* ---------- Hero ---------- */
+    .hero{display:grid;grid-template-columns:1fr 420px;gap:28px;align-items:center;padding:54px 0}
+    .hero-inner{padding:28px;border-radius:18px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));box-shadow:0 6px 30px rgba(2,6,23,0.25)}
+    .eyebrow{color:#fbe7ff;font-weight:700;display:inline-block;padding:6px 10px;border-radius:999px;background:rgba(255,255,255,0.03);margin-bottom:12px}
+    h1{font-size:34px;margin:0 0 14px;color:white}
+    p.lead{color:rgba(255,255,255,0.9);margin:0 0 20px}
+    .hero-actions{display:flex;gap:12px;flex-wrap:wrap}
+
+    .profile-card{background:radial-gradient(circle at 20% 10%, rgba(255,255,255,0.03), transparent);padding:20px;border-radius:16px;text-align:center;color:white}
+    .profile-photo{width:120px;height:120px;border-radius:50%;overflow:hidden;margin:0 auto 12px;border:4px solid rgba(255,255,255,0.06)}
+    .profile-name{font-weight:700}
+    .profile-role{font-size:14px;color:rgba(255,255,255,0.85)}
+
+    /* ---------- Sections ---------- */
+    section{padding:56px 0}
+    .section-title{display:flex;align-items:center;gap:12px;margin-bottom:22px;color:white}
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .card{background:rgba(255,255,255,0.03);padding:20px;border-radius:12px;color:white;min-height:140px;display:flex;flex-direction:column;gap:12px}
+
+    /* Portfolio images */
+    .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+    .gallery img{border-radius:10px;cursor:pointer;transition:transform .25s}
+    .gallery img:hover{transform:scale(1.03)}
+
+    /* Testimonials */
+    .testimonials{position:relative}
+    .testimonial{min-height:120px;padding:18px;border-radius:12px;background:rgba(255,255,255,0.02);color:white}
+
+    /* Contact form */
+    form{display:grid;gap:12px}
+    input,textarea,select{padding:12px;border-radius:8px;border:1px solid rgba(255,255,255,0.06);background:rgba(255,255,255,0.02);color:white}
+    input::placeholder,textarea::placeholder{color:rgba(255,255,255,0.65)}
+    .form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+
+    /* Footer */
+    footer{padding:28px 0;color:rgba(255,255,255,0.8)}
+
+    /* ---------- Small screens ---------- */
+    @media (max-width:900px){
+      .hero{grid-template-columns:1fr;}
+      .grid{grid-template-columns:repeat(1,1fr)}
+      .gallery{grid-template-columns:repeat(2,1fr)}
+      nav ul{display:none}
+      .hamburger{display:block}
+    }
+
+    @media (max-width:520px){
+      h1{font-size:28px}
+      .profile-photo{width:100px;height:100px}
+      .container{padding:16px}
+      .gallery{grid-template-columns:repeat(1,1fr)}
+      .form-row{grid-template-columns:1fr}
+    }
+
+    /* ---------- reveal animation ---------- */
+    .reveal{opacity:0;transform:translateY(12px);transition:opacity .6s ease,transform .6s ease}
+    .reveal.visible{opacity:1;transform:none}
+
+    /* Carousel small dots */
+    .dots{display:flex;gap:8px;justify-content:center;margin-top:10px}
+    .dot{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,0.12)}
+    .dot.active{background:white}
+
+    /* utilities */
+    .muted{color:rgba(255,255,255,0.7);font-size:13px}
+  </style></head>
 <body>
-    <header>
-        <nav class="navbar">
-            <div class="container">
-                <a href="#home" class="nav-logo">MyPortfolio</a>
-                <ul class="nav-menu">
-                    <li class="nav-item"><a href="#home" class="nav-link">Home</a></li>
-                    <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
-                    <li class="nav-item"><a href="#portfolio" class="nav-link">Portfolio</a></li>
-                    <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
-                </ul>
-                <div class="theme-switcher">
-                    <input type="checkbox" id="theme-toggle" class="theme-toggle-checkbox">
-                    <label for="theme-toggle" class="theme-toggle-label"></label>
-                </div>
-                <div class="hamburger">
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                </div>
-            </div>
-        </nav>
-    </header>
+  <header>
+    <div class="container nav">
+      <div class="brand">
+        <div class="logo">✨</div>
+        <div style="color:white;">
+          <div style="font-weight:700">YourAstroName</div>
+          <div style="font-size:12px;color:rgba(255,255,255,0.7)">Astrologer • Spiritual Guide</div>
+        </div>
+      </div><nav>
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#portfolio">Portfolio</a></li>
+      <li><a href="#testimonials">Testimonials</a></li>
+      <li><a href="#contact" class="cta">Book Consult</a></li>
+    </ul>
+    <button class="hamburger" aria-label="Open menu">☰</button>
+  </nav>
+</div>
 
-    <main>
-        <section id="home" class="home-section">
-            <div class="container">
-                <div class="home-content">
-                    <h1 class="home-title">Welcome to My Personal Portfolio</h1>
-                    <p class="home-subtitle">A place to showcase my work and skills.</p>
-                </div>
-            </div>
-            <div class="animated-bg"></div>
-        </section>
+  </header>  <main class="container">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-inner reveal">
+        <span class="eyebrow">Trusted Astrologer</span>
+        <h1>Accurate horoscope readings & personalized spiritual guidance</h1>
+        <p class="lead">I help people find clarity through Vedic astrology, personalized remedies and one-on-one consultations. Book a session or read testimonials from happy clients.</p>
+        <div class="hero-actions">
+          <a href="#contact" class="cta">Book a Consultation</a>
+          <a href="#services" style="color:white;padding:10px;border-radius:10px;background:rgba(255,255,255,0.03)">View Services</a>
+        </div>
+      </div><aside class="profile-card reveal">
+    <div class="profile-photo">
+      <!-- Replace with your image in Jules / project assets -->
+      <img src="https://via.placeholder.com/400x400.png?text=Profile" alt="Profile photo">
+    </div>
+    <div class="profile-name">Pandit/Dr. Name</div>
+    <div class="profile-role">Vedic Astrologer • 12+ yrs experience</div>
+    <div style="margin-top:12px;font-size:13px;color:rgba(255,255,255,0.85)">Online & in-person consultations</div>
+  </aside>
+</section>
 
-        <section id="about" class="about-section">
-            <div class="container">
-                <h2 class="section-title">About Me</h2>
-                <div class="about-content">
-                    <div class="about-card">
-                        <h3>Who I Am</h3>
-                        <p>I am a passionate developer who loves creating beautiful and functional websites.</p>
-                    </div>
-                    <div class="about-card">
-                        <h3>My Skills</h3>
-                        <p>HTML, CSS, JavaScript, and more. I am always eager to learn new technologies.</p>
-                    </div>
-                    <div class="about-card">
-                        <h3>My Hobbies</h3>
-                        <p>When I'm not coding, I enjoy reading, hiking, and exploring new places.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-title">
+    <h2 style="margin:0;color:white">About Me</h2>
+  </div>
+  <div class="grid">
+    <div class="card reveal">
+      <h3 style="margin:0 0 8px;color:white">Who I am</h3>
+      <p class="muted">I am a trained Vedic astrologer with over a decade of experience helping clients with career, relationships and health. I combine horoscope reading with practical remedies and guided spiritual practices.</p>
+    </div>
+    <div class="card reveal">
+      <h3 style="margin:0 0 8px;color:white">Approach</h3>
+      <p class="muted">Clear reading, simple remedies (gemstones, mantras, yantras), and follow-up sessions. I focus on solutions you can implement.</p>
+    </div>
+    <div class="card reveal">
+      <h3 style="margin:0 0 8px;color:white">Certifications</h3>
+      <p class="muted">Certified in classical Jyotish, trained under [Teacher's Name]. Regularly teach workshops and webinars.</p>
+    </div>
+  </div>
+</section>
 
-        <section id="portfolio" class="portfolio-section">
-            <div class="container">
-                <h2 class="section-title">My Portfolio</h2>
-                <div class="portfolio-grid">
-                    <div class="portfolio-item">
-                        <img src="https://via.placeholder.com/300" alt="Project 1">
-                        <div class="portfolio-overlay">
-                            <h3>Project 1</h3>
-                            <p>A short description of the project.</p>
-                        </div>
-                    </div>
-                    <div class="portfolio-item">
-                        <img src="https://via.placeholder.com/300" alt="Project 2">
-                        <div class="portfolio-overlay">
-                            <h3>Project 2</h3>
-                            <p>A short description of the project.</p>
-                        </div>
-                    </div>
-                    <div class="portfolio-item">
-                        <img src="https://via.placeholder.com/300" alt="Project 3">
-                        <div class="portfolio-overlay">
-                            <h3>Project 3</h3>
-                            <p>A short description of the project.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+<!-- SERVICES -->
+<section id="services">
+  <div class="section-title"><h2 style="margin:0;color:white">Services</h2></div>
+  <div class="grid">
+    <div class="card reveal">
+      <strong>Birth Chart Reading</strong>
+      <p class="muted">In-depth natal chart analysis with remedies.</p>
+    </div>
+    <div class="card reveal">
+      <strong>Career & Education Guidance</strong>
+      <p class="muted">Find timing and strengths for career moves.</p>
+    </div>
+    <div class="card reveal">
+      <strong>Relationship & Marriage</strong>
+      <p class="muted">Compatibility checks and relationship guidance.</p>
+    </div>
+  </div>
+</section>
 
-        <section id="contact" class="contact-section">
-            <div class="container">
-                <h2 class="section-title">Contact Me</h2>
-                <form id="contact-form" class="contact-form">
-                    <div class="form-group">
-                        <label for="name">Name</label>
-                        <input type="text" id="name" name="name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" id="email" name="email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="message">Message</label>
-                        <textarea id="message" name="message" rows="5" required></textarea>
-                    </div>
-                    <button type="submit" class="btn">Send Message</button>
-                </form>
-            </div>
-        </section>
-    </main>
+<!-- PORTFOLIO / WORK -->
+<section id="portfolio">
+  <div class="section-title"><h2 style="margin:0;color:white">Portfolio</h2></div>
+  <div class="gallery reveal">
+    <img src="https://via.placeholder.com/800x600.png?text=Session+1" alt="case" loading="lazy" data-caption="Online reading session"/>
+    <img src="https://via.placeholder.com/800x600.png?text=Session+2" alt="case" loading="lazy" data-caption="Client testimonial"/>
+    <img src="https://via.placeholder.com/800x600.png?text=Workshop" alt="case" loading="lazy" data-caption="Workshop snapshot"/>
+  </div>
+</section>
 
-    <script src="js/script.js"></script>
-</body>
-</html>
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div class="section-title"><h2 style="margin:0;color:white">What clients say</h2></div>
+  <div class="testimonials reveal">
+    <div class="testimonial" id="testimonial-1">
+      "Really helped me through a tough time. Readings were accurate and practical." — Sangeeta
+    </div>
+    <div class="testimonial" id="testimonial-2" style="display:none">
+      "Clear guidance and follow-up. My career improved after applying suggestions." — Rahul
+    </div>
+    <div class="testimonial" id="testimonial-3" style="display:none">
+      "Very kind and professional. Highly recommend." — Priya
+    </div>
+    <div class="dots" aria-hidden="true">
+      <div class="dot active"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-title"><h2 style="margin:0;color:white">Book a Consultation</h2></div>
+  <div class="card reveal">
+    <form id="contactForm" action="" onsubmit="return handleSubmit(event)">
+      <div class="form-row">
+        <input id="name" name="name" placeholder="Your name" required />
+        <input id="phone" name="phone" placeholder="Phone (with country code)" required />
+      </div>
+      <input id="email" name="email" type="email" placeholder="Email address" required />
+      <select id="service" name="service">
+        <option>Birth Chart Reading</option>
+        <option>Career Guidance</option>
+        <option>Relationship Consultation</option>
+      </select>
+      <textarea id="message" name="message" rows="4" placeholder="Brief message / questions" required></textarea>
+      <div style="display:flex;gap:12px;align-items:center">
+        <button type="submit" class="cta">Send Request</button>
+        <a id="whatsappBtn" href="#" target="_blank" style="padding:8px 12px;border-radius:10px;background:rgba(255,255,255,0.03);color:white">Chat on WhatsApp</a>
+      </div>
+      <div id="formMsg" class="muted" style="margin-top:10px"></div>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="muted">© <span id="year"></span> YourAstroName — All rights reserved • <a href="#privacy">Privacy</a></div>
+</footer>
+
+  </main>  <!-- Modal for gallery preview (simple) -->  <div id="modal" style="position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,0.6);z-index:200">
+    <div style="max-width:920px;width:95%;border-radius:12px;overflow:hidden;background:#071224;padding:14px;color:white">
+      <div id="modalContent"></div>
+      <div style="text-align:right;margin-top:8px"><button onclick="closeModal()" style="padding:8px 12px;border-radius:8px">Close</button></div>
+    </div>
+  </div>  <script>
+    // Small helper: smooth scroll for nav anchors
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click',e=>{
+        const hash = a.getAttribute('href');
+        if(hash.startsWith('#')){
+          e.preventDefault();
+          const el = document.querySelector(hash);
+          if(el){ el.scrollIntoView({behavior:'smooth',block:'start'}); }
+        }
+      });
+    });
+
+    // IntersectionObserver reveal animation
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('visible'); } });
+    },{threshold:0.12});
+    document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+    // Simple testimonial carousel
+    const testimonials = [
+      document.getElementById('testimonial-1'),
+      document.getElementById('testimonial-2'),
+      document.getElementById('testimonial-3')
+    ];
+    const dots = Array.from(document.querySelectorAll('.dot'));
+    let tIndex=0;
+    function showTestimonial(i){
+      testimonials.forEach((t,idx)=>t.style.display = idx===i? 'block':'none');
+      dots.forEach((d,idx)=>d.classList.toggle('active', idx===i));
+    }
+    showTestimonial(0);
+    let tTimer = setInterval(()=>{ tIndex=(tIndex+1)%testimonials.length; showTestimonial(tIndex); },4000);
+    document.querySelector('.testimonials').addEventListener('mouseenter',()=>clearInterval(tTimer));
+    document.querySelector('.testimonials').addEventListener('mouseleave',()=>{ tTimer=setInterval(()=>{ tIndex=(tIndex+1)%testimonials.length; showTestimonial(tIndex); },4000);});
+
+    // Gallery clicks -> modal
+    document.querySelectorAll('.gallery img').forEach(img=>{
+      img.addEventListener('click',()=>{
+        document.getElementById('modalContent').innerHTML = '<img src="'+img.src+'" alt="preview" style="width:100%;height:auto;border-radius:8px;"/><p class="muted" style="margin-top:6px">'+(img.dataset.caption||'')+'</p>';
+        document.getElementById('modal').style.display='flex';
+      });
+    });
+    function closeModal(){ document.getElementById('modal').style.display='none'; }
+
+    // Contact form handler (client-side validation + guidance)
+    function handleSubmit(e){
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+      const service = document.getElementById('service').value;
+      const message = document.getElementById('message').value.trim();
+      const msgEl = document.getElementById('formMsg');
+
+      if(!name || !email || !phone || !message){ msgEl.textContent = 'Please fill all fields.'; return false; }
+
+      // Replace this block: by default we open WhatsApp chat with prefilled message
+      const waMsg = encodeURIComponent('Hello, my name is '+name+'. I would like to book: '+service+'\nContact: '+phone+'\nMessage: '+message);
+      const waLink = 'https://wa.me/91' + phone.replace(/[^0-9]/g,'') + '?text=' + waMsg;
+      document.getElementById('whatsappBtn').href = waLink;
+      msgEl.textContent = 'Message prepared. Click WhatsApp to continue or replace form action with Formspree endpoint.';
+
+      // If you have a Formspree endpoint, set form action to it and uncomment below to submit normally
+      // document.getElementById('contactForm').action = 'https://formspree.io/f/your-endpoint';
+      // document.getElementById('contactForm').submit();
+
+      return false; // don't actually submit by default
+    }
+
+    // small helpers
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Accessibility: close modal with escape
+    document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape'){ closeModal(); } });
+
+    // NOTE: Replace placeholder images and text with your real content. 
+    // To deploy on GitHub Pages: save this as index.html in your repo root and enable Pages -> main / root.
+  </script></body>
+    </html>
