@@ -1,10 +1,117 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>My First Website</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Portfolio</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <h1>Hello, this is my first website!</h1>
-  <p>Made with GitHub Pages and Jules 🚀</p>
+    <header>
+        <nav class="navbar">
+            <div class="container">
+                <a href="#home" class="nav-logo">MyPortfolio</a>
+                <ul class="nav-menu">
+                    <li class="nav-item"><a href="#home" class="nav-link">Home</a></li>
+                    <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
+                    <li class="nav-item"><a href="#portfolio" class="nav-link">Portfolio</a></li>
+                    <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
+                </ul>
+                <div class="theme-switcher">
+                    <input type="checkbox" id="theme-toggle" class="theme-toggle-checkbox">
+                    <label for="theme-toggle" class="theme-toggle-label"></label>
+                </div>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home" class="home-section">
+            <div class="container">
+                <div class="home-content">
+                    <h1 class="home-title">Welcome to My Personal Portfolio</h1>
+                    <p class="home-subtitle">A place to showcase my work and skills.</p>
+                </div>
+            </div>
+            <div class="animated-bg"></div>
+        </section>
+
+        <section id="about" class="about-section">
+            <div class="container">
+                <h2 class="section-title">About Me</h2>
+                <div class="about-content">
+                    <div class="about-card">
+                        <h3>Who I Am</h3>
+                        <p>I am a passionate developer who loves creating beautiful and functional websites.</p>
+                    </div>
+                    <div class="about-card">
+                        <h3>My Skills</h3>
+                        <p>HTML, CSS, JavaScript, and more. I am always eager to learn new technologies.</p>
+                    </div>
+                    <div class="about-card">
+                        <h3>My Hobbies</h3>
+                        <p>When I'm not coding, I enjoy reading, hiking, and exploring new places.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="portfolio" class="portfolio-section">
+            <div class="container">
+                <h2 class="section-title">My Portfolio</h2>
+                <div class="portfolio-grid">
+                    <div class="portfolio-item">
+                        <img src="https://via.placeholder.com/300" alt="Project 1">
+                        <div class="portfolio-overlay">
+                            <h3>Project 1</h3>
+                            <p>A short description of the project.</p>
+                        </div>
+                    </div>
+                    <div class="portfolio-item">
+                        <img src="https://via.placeholder.com/300" alt="Project 2">
+                        <div class="portfolio-overlay">
+                            <h3>Project 2</h3>
+                            <p>A short description of the project.</p>
+                        </div>
+                    </div>
+                    <div class="portfolio-item">
+                        <img src="https://via.placeholder.com/300" alt="Project 3">
+                        <div class="portfolio-overlay">
+                            <h3>Project 3</h3>
+                            <p>A short description of the project.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="contact-section">
+            <div class="container">
+                <h2 class="section-title">Contact Me</h2>
+                <form id="contact-form" class="contact-form">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="btn">Send Message</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <script src="js/script.js"></script>
 </body>
 </html>
