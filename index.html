@@ -188,8 +188,17 @@
 
     /* utilities */
     .muted{color:rgba(226, 232, 240, 0.7);font-size:13px}
+    #tsparticles {
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      z-index: -1;
+    }
   </style></head>
 <body>
+  <div id="tsparticles"></div>
   <header>
     <div class="container nav">
       <div class="brand">
@@ -429,5 +438,101 @@
     hamburger.addEventListener('click', () => {
       navUl.classList.toggle('show');
     });
-  </script></body>
+  </script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles@2.12.0/tsparticles.bundle.min.js"></script>
+<script>
+  tsParticles.load("tsparticles", {
+    fullScreen: {
+      enable: true,
+      zIndex: -1
+    },
+    particles: {
+      number: {
+        value: 100,
+        density: {
+          enable: true,
+          value_area: 800
+        }
+      },
+      color: {
+        value: ["#FFD700", "#FFFFFF", "#FF69B4", "#ADD8E6"]
+      },
+      shape: {
+        type: "circle"
+      },
+      opacity: {
+        value: 0.8,
+        random: true,
+        anim: {
+          enable: true,
+          speed: 1,
+          opacity_min: 0.1,
+          sync: false
+        }
+      },
+      size: {
+        value: 2,
+        random: true,
+        anim: {
+          enable: true,
+          speed: 2,
+          size_min: 0.5,
+          sync: false
+        }
+      },
+      line_linked: {
+        enable: false
+      },
+      move: {
+        enable: true,
+        speed: 0.5,
+        direction: "none",
+        random: true,
+        straight: false,
+        out_mode: "out",
+        bounce: false
+      }
+    },
+    interactivity: {
+      detect_on: "canvas",
+      events: {
+        onhover: {
+          enable: true,
+          mode: "grab"
+        },
+        onclick: {
+          enable: false
+        },
+        resize: true
+      },
+      modes: {
+        grab: {
+          distance: 140,
+          line_opacity: 0.5
+        },
+        bubble: {
+          distance: 400,
+          size: 40,
+          duration: 2,
+          opacity: 8,
+          speed: 3
+        },
+        repulse: {
+          distance: 200
+        },
+        push: {
+          particles_nb: 4
+        },
+        remove: {
+          particles_nb: 2
+        }
+      }
+    },
+    retina_detect: true,
+    background: {
+      color: "#0d111e"
+    }
+  });
+</script>
+</body>
     </html>
